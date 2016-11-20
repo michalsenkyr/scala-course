@@ -68,4 +68,4 @@ lazy val root = (project in file(".")).
     name := "scala-course",
     description := "Scala course materials"
   ).
-  aggregate(variables, classes, patternMatching, collections, forComprehensions, implicits, duplicateFinder)
+  aggregate(variables, classes, patternMatching, collections, forComprehensions, implicits, duplicateFinder, tuplesGame)
