@@ -15,7 +15,7 @@ sudo ln -s $(pwd)/amm /usr/local/bin/amm
 ```
 4. Clone this repository
 ```bash
-git clone 'https://github.com/binarek/scala-course.git'
+git clone 'https://github.com/michalsenkyr/scala-course.git'
 ```
 
 ## Executing examples using SBT
