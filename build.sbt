@@ -50,9 +50,16 @@ lazy val duplicateFinder = project.
   settings(common: _*).
   settings(
     name := "duplicate-finder",
-    description := "Duplicate file finder example application",
+    description := "Duplicate file finder exercise solutions",
     fork in run := true,
     baseDirectory in run := project.base
+  )
+
+lazy val tuplesGame = project.
+  settings(common: _*).
+  settings(
+    name := "tuples-game",
+    description := "Tuples game exercise solution"
   )
 
 lazy val root = (project in file(".")).
