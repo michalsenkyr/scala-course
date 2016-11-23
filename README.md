@@ -38,3 +38,4 @@ Run the `amm` command in any directory
 * implicits - Contains examples of implicit classes (slide 31)
 * duplicateFinder - Contains the solutions for the duplicate file finder exercise (slide 36)
     * Solutions include Scala with and without Java 8 as well as pure Java (with and without Java 8) for comparison
+* tuplesGame - Contains the solution for the Tuples game exercise (slide 37)
