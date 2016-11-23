@@ -3,12 +3,12 @@ Michal Šenkýř - Sklik vývojář
 
 
 
-## Úvod
-- Scala je čistě object-oriented
-  - Vše je objekt (včetně traits a primitivních typů)
-- Scala je funkcionální
-  - Vše je výraz (včetně `if`, `for`, ...)
-- Scala je úspěšně používána v produkci u velkých společností
+## Scala
+- Čistě object-oriented
+  - Vše je objekt (vč. traits a primitivních typů)
+- Plně funkcionální
+  - Vše je výraz (vč. `if`, `for`, ...)
+- Úspěšně používána v produkci
   - Twitter, Netflix, Tumblr, LinkedIn, Foursquare, ...
 
 Note:
@@ -17,12 +17,12 @@ trait je Scala ekvivalent interface
 
 
 ## Scala & Java
-- Scala běží na Java Virtual Machine
+- Běží na Java Virtual Machine
   - Zaběhnutá stabilní platforma
-- Scala si "rozumí" s Javou
-  - Výsledný bytecode stejný
-  - Všechny třídy lze použít bez větších problémů – Scala třídy ve speciální knihovně
-  - Podpora psaní kódu takovým způsobem, aby se výsledek jevil jako Java (anotace pro getter/setter konvenci, konvertory na Java kolekce, atd.)
+- "Rozumí" si s Javou
+  - Bytecode stejný
+  - Třídy kompatibilní – Scala třídy ve speciální knihovně
+  - Podpora psaní kódu Java způsobem (anotace pro getX/setX, konvertory pro kolekce, atd.)
 
 
 
@@ -106,23 +106,22 @@ Mapa seznamů slov podle prvních písmen s lexikografickým řazením
 
 ## Scala vs Java
 - Podpora funkcionálního programování
-  - Už od roku 2004, Java 8 až o 10 let později
+  - Od r. 2004 (Java 8 až o 10 let později)
   - Plná podpora closures
-- Propracovanější Collections knihovna
+- Propracovanější Collections
 - Pattern matching
 - Inference konce výrazu (žádné středníky!)
-- Klade silný důraz na používání immutable tříd
-  - Lepší paralelizace operací
+- Silný důraz na používání immutable tříd
 
 
 
 ## Scala vs Java
 - Vyšší informační hustota
   - Odstranění zbytečné syntaxe, inference typů, string interpolace, ...
-  - Definice vlastních operátorů
-- Důraz na čitelnost kódu
-- Důraz na dobrou udržovatelnost kódu
-  - Převod nejčastějších runtime problémů na compile-time chyby
+  - Vlastní operátory
+- Čitelnost kódu
+- Dobrá udržovatelnost kódu
+  - Převod runtime chyb na compile-time
   - Silná závislost na typových parametrech, nahrazení null hodnot třídou Option, používání immutable tříd
 
 Note:
@@ -131,16 +130,16 @@ Plná podpora closures = lze měnit vnější proměnné
 
 
 ## Scala way vs Java way
-- Ultimátním cílem je minimalizace kódu a čitelnost
+- Minimalizace kódu a čitelnost
   - Oproti slepému používání design patternů
 - Nepoužívat kanón na vrabce
-  - Obvykle je snazší refaktorovat
+  - Snazší refaktorovat
 - Scala nedrží vývojáře za ručičku
-  - Poskytuje nástroje – jejich správná volba je na programátorovi
-- Preference immutable tříd
+  - Poskytuje nástroje – správná volba na programátorovi
+- Immutable třídy
   - Funkcionální programování, paralelizace, testování
-- Zachovávání maximální type safety
-  - Minimalizace přetypovávání, TypeTags pro předávání informace o typových parametrech za runtime
+- Maximální type safety
+  - Minimalizace přetypovávání (TypeTags proti erasure)
 
 Note:
 Nedrží za ručičku = poskytuje velké množství různých cest, jak dosáhnout daného cíle
@@ -149,7 +148,7 @@ Type Tags – Scala umí automaticky resolvit třídy v typových parametrech, p
 
 
 ## Hierarchie tříd
-![Hierarchie tříd](img/classhierarchy.png) <!-- .element: style="border: none; background: none; box-shadow: none" -->
+![hierarchie tříd](img/classhierarchy.png) <!-- .element: style="border: none; background: none; box-shadow: none" -->
 
 
 
@@ -158,9 +157,8 @@ Type Tags – Scala umí automaticky resolvit třídy v typových parametrech, p
 - Implicitní podpora Javy a Scaly
 - Automaticky stáhne Scala kompilátor a knihovny
 - Používá Scala kompilátor
-- Snadno rozšiřitelný
-- Umí používat Maven repozitáře přes Ivy
-- Scala REPL dostupný přes: sbt console
+- Snadno rozšiřitelné
+- Maven repozitáře přes Ivy
 
 
 
@@ -175,8 +173,9 @@ Type Tags – Scala umí automaticky resolvit třídy v typových parametrech, p
   
   scalaVersion := "2.12.0"
   ```
-- Kompilace a spuštění
-  - `sbt compile` – pouze kompilace
+- Příkazy
+  - `sbt console` - REPL
+  - `sbt compile` – kompilace
   - `sbt run` – kompilace a spuštění
   - `sbt ~run` – průběžná kompilace a spouštění
 
@@ -200,10 +199,10 @@ publishMavenStyle = vygenerovat POM
 ```scala
 val x: Int = 5
 ```
-- Lze vynechat typ – použije se typová inference
-- Stejné jako definování `final` proměnné v Javě, ale kratší
-- Výhody pro paralelizaci
-- Výhody pro čitelnost kódu
+- Typová inference
+- Jako `final` v Javě
+- Paralelizace
+- Čitelnost kódu
 - Lazy evaluation
   ```scala
   lazy val x: Int = 5
@@ -218,9 +217,9 @@ Java JIT kompilátor umí odvodit podle použití v kódu, zda lze optimalizovat
 ```scala
 var x: Int = 5
 ```
-- Vhodné pro výkonostně kritický kód
+- Pro výkonostně kritický kód
 - Obtížnější úvaha o obsažené hodnotě
-- Použití doporučováno pouze v případě, že “víte, co děláte”
+- Použití pouze když “víte, co děláte”
 
 
 
@@ -228,11 +227,11 @@ var x: Int = 5
 ```scala
 class Test
 ```
-- Lze definovat více tříd v jednom souboru
-  - Není potřeba, aby se soubor jmenoval stejně jako třída
+- Více tříd v jednom souboru
+  - Název souboru libovolný
   - Přehlednější souborová struktura
 - Modifikátory
-  - Jako v Javě, přičemž default je public a package private lze specifikovat na jakýkoliv superpackage
+  - Jako v Javě, ale default je public a konkrétní package private
     ```scala
     private[sql]
     ```
@@ -243,9 +242,9 @@ class Test
 ```scala
 object Test
 ```
-- To samé jako Java třída se všemi static membery
-  - Scala třídy nemohou mít static membery – statická funkcionalita se píše do tzv. companion objektů (singleton se stejným názvem)
-- Lze simulovat package hierarchii
+- Jako Java třída se static membery
+  - Scala třídy nemají static membery – přesun do tzv. companion objektů (`object` se stejným názvem)
+- Simulace package hierarchie
 
 Note:
 Více tříd – např. Service a Exception
@@ -261,11 +260,11 @@ class Test(param: Int,
   ...
 }
 ```
-- Píše se přímo do těla třídy, parametry do signatury třídy
-- Parametrům konstruktoru se vytvoří gettery/settery, pokud jsou předcházeny klíčovým slovem `val`/`var`
-- Lze určit default hodnoty parametrů
-- Všem definovaným proměnným se automaticky vytváří gettery/settery
-  - lze obejít použitím bloku
+- V těle třídy, parametry v signatuře třídy
+- Parametrům se vytvoří gettery/settery, pokud jsou `val`/`var`
+- Default hodnoty
+- Proměnným se vytváří gettery/settery
+  - Obcházeni použitím bloku
 
 
 
@@ -273,9 +272,9 @@ class Test(param: Int,
 ```scala
 def this(param: String) = this(param.toInt)
 ```
-- Píší se jako this metody bez uvedeného návratového typu
-- Musí začínat voláním jiného existujícího konstruktoru
-  - Řetěz vždy končí voláním primárního konstruktoru
+- `this` metody bez návratového typu
+- Začínají voláním jiného konstruktoru
+  - Řetěz končí voláním primárního konstruktoru
 
 
 
@@ -283,15 +282,15 @@ def this(param: String) = this(param.toInt)
 ```scala
 def transform(param1: Int, param2: Int = 2): Int = param1 * param2
 ```
-- Návratový typ lze vynechat, pokud lze odvodit typovou inferencí
-- Lze určit default hodnoty parametrů
-  - Při volání lze určit parametr názvem místo pořadím
+- Vynechání návratového typu - typová inference
+- Default hodnoty parametrů
+  - Parametry volání názvem místo pořadím
     ```scala
     transform(param1 = 1)
     ```
-- Metodám bez parametrů lze vynechat závorky
-  - Závorky obvykle značí metody se side-effecty
-- Parametr lze předat jménem (lazy vyhodnocování)
+- Bez parametrů lze vynechat závorky
+  - Závorky značí side-effecty
+- Předávání parametru jménem (lazy vyhodnocování)
   ```scala
   def tranform(param: => Int): Int = ...
   ```
@@ -304,17 +303,17 @@ Zmínit rozdíly ve volání metod bez parametrů bez/s závorkami (závorky lze
 
 
 ## Metody
-- Podporují varargs parametry
+- Varargs
   ```scala
   def transform(params: Int*): Int = ...
   ```
-  - Uvnitř těla metody se s nimi nakládá jako se `Seq[T]`
-  - Pro rozvinutí `Seq[T]` na varargs při volání je nutné explicitně zkonvertovat
+  - Uvnitř metody typ `Seq[T]`
+  - Rozvinutí `Seq[T]` na varargs explicitně
     ```scala
     transform(paramsSeq: _*)
     ```
 - Metody a funkce nejsou totéž
-  - Lze zkonvertovat metodu na funkci
+  - Konverze metody na funkci
     ```scala
     val function = method _
     ```
@@ -322,7 +321,7 @@ Zmínit rozdíly ve volání metod bez parametrů bez/s závorkami (závorky lze
 
 
 ## Symbolické metody (operátory)
-- Všechny metody lze volat v infixovém/postfixovém stylu
+- Volání v infix/postfix stylu
   ```scala
   class Test(val x: Int) {
     def +(other: Test) = new Test(x + other.x)
@@ -331,8 +330,8 @@ Zmínit rozdíly ve volání metod bez parametrů bez/s závorkami (závorky lze
   new Test(1) + new Test(2) // == new Test(3)
   new Test(1) !             // == new Test(-1)
   ```
-  - Pořadí v infix stylu je obrácené, pokud název metody končí dvojtečkou
-  - Znakové infix operátory (+, -, *, /, atd.) se řídí typickou precedencí
+  - Metoda končí dvojtečkou - infix obráceně
+  - Infix operátory (+, -, *, /, atd.) mají typickou precedenci
 
 
 
@@ -340,10 +339,10 @@ Zmínit rozdíly ve volání metod bez parametrů bez/s závorkami (závorky lze
 ```scala
 List[String]
 ```
-- Interně se s nimi nakládá stejně jako s Java generikami (erasure)
-- Kompilátor o nich má kompletní přehled a vynucuje si jejich dodržování
-  - Jejich vynechávání/přetypovávání se silně nedoporučuje
-- Existují techniky, jakými lze typové parametry předat do runtime
+- Interně Java generika (erasure)
+- Kompilátor má přehled a vynucuje si dodržování
+  - Vynechávání/přetypovávání se silně nedoporučuje
+- TypeTags pro předání za runtime
 
 Note:
 Postfix hlásí warning, pokud se nenaimportuje language.postfixOps
@@ -352,37 +351,37 @@ Postfix hlásí warning, pokud se nenaimportuje language.postfixOps
 
 ## Speciální metody
 - `equals`
-  - Volá se při použití operátoru `==`
+  - Volá se při použití `==`
 - `apply`
-  - Lze vynechat její volání a “volat” přímo objekt/instanci (snadnější interoperace OOP - FP)
-  - Přehlednost při použití objektů `FunctionN`, `TupleN`, atd.
+  - Přímé “volání” objektu/instance (interoperace OOP - FP)
+  - Přehlednost u `FunctionN`, `TupleN`, atd.
 - `update`
-  - Totéž jako `apply`, ale s následujícím přiřazením
+  - Jako `apply`, ale s přiřazením
 
 
 
 ## Speciální metody
 - `..._=`
-  - Nahrazují settery, používají se jako přiřazení do fieldu
+  - Jako settery - přiřazení do fieldu
   - Getter musí existovat
 - `unary_+`, `unary_-`, `unary_!`, `unary_~`
-  - Definují korespondující unární operace
+  - Unární operace
 
 
 
 ## Speciální metody
 - `unapply`
   - Vrací `Option[T]`
-  - Používá se v pattern matchingu pro extrakci parametrů (inverz k `apply`)
-    - Pro více parametrů je `T` typu `TupleN`
-  - Lze použít při přiřazování
+  - Extraktor v pattern matchingu (inverz k `apply`)
+    - Více parametrů - `T` je `TupleN`
+  - Použití při přiřazování
     ```scala
     val Person(name, email) = person
     ```
 - `unapplySeq`
   - Vrací `Option[Seq[T]]`
-  - Jako `unapply`, ale pro proměnlivý počet parametrů
-  - Např. pro regex pattern matching
+  - `unapply` pro proměnlivý počet hodnot
+  - Např. regex pattern matching
 
 Note:
 Ukázat vnořený unapply (s tuples)
@@ -391,14 +390,14 @@ Ukázat vnořený unapply (s tuples)
 
 ## Case třídy
 - Syntactic sugar pro value třídy
-- Všechny parametry jsou fieldy s public gettery
-- `copy` s default hodnotami pro možnost vytvoření kopie se změněnými vybranými fieldy
-- `equals`, `hashCode` a `toString` podle parametrů
+- Parametry tvoří immutable fieldy
+- `copy` s default hodnotami - kopie se změnou
+- `equals`, `hashCode` a `toString`
 - Extendují `Product`
-  - umožňuje přístup k parametrům jako k seznamu hodnot
-- Navíc se vytváří companion objekt
-  - `apply` pro možnost vynechání `new`
-  - `unapply` jako extraktor parametrů konstruktoru
+  - Přístup k parametrům podle pořadí
+- Companion objekt
+  - `apply` - vynechání `new`
+  - `unapply` - extraktor parametrů
 
 
 
@@ -406,13 +405,13 @@ Ukázat vnořený unapply (s tuples)
 ```scala
 val tuple: (Int, Int) = (1, 2)
 ```
-- Alternativní syntaxe:
+- Alternativa:
   ```scala
   val tuple: (Int, Int) = 1 -> 2
   ```
-- Odpovídají typům `Tuple1[T1]`, `Tuple2[T1, T2]`, ...
-- Symbolizují typově bezpečnou N-tici prvků (pro TupleN)
-- Obsahují `apply`, `unapply`, `_N`, `hashCode`, `equals`, `swap`, atd.
+- Typy `Tuple1[T1]`, `Tuple2[T1, T2]`, ...
+- Typově bezpečné N-tice (`TupleN`)
+- `apply`, `unapply`, `_N`, `hashCode`, `equals`, `swap`, atd.
 
 
 
@@ -420,13 +419,13 @@ val tuple: (Int, Int) = (1, 2)
 ```scala
 val function: Int => String = (x: Int) => x.toString
 ```
-- Odpovídají typům `Function0[+R]`, `Function1[-T1, +R]`, ...
-- Lze vynechat typy parametrů, pokud jsou odvoditelné typovou inferencí:
+- Typy `Function0[+R]`, `Function1[-T1, +R]`, ...
+- Parametry lze nechat odvodit typovou inferencí
   ```scala
   val function: Int => String = x => x.toString
   ```
-- Symbolizují funkce s N parametry (pro `FunctionN`)
-- Obsahují `apply`, `curried`, `tupled`
+- Funkce s N parametry (`FunctionN`)
+- `apply`, `curried`, `tupled`
 
 
 
@@ -437,10 +436,10 @@ val f = new PartialFunction[Int, Double] {
   override def isDefinedAt(x: Int) = x != 0
 }
 ```
-- Odpovídá typu PartialFunction[-A, +B]
-- Symbolizuje funkci s jedním parametrem s omezeným definičním oborem
-- Lze definovat snadněji pomocí [pattern matchingu](#/pattern-matching)
-- Obsahuje `isDefinedAt`, `orElse`, `andThen`, `lift`, `applyOrElse`, atd.
+- Typ `PartialFunction[-A, +B]`
+- Funkce s jedním parametrem s omezeným definičním oborem
+- Snadnější definice [pattern matchingem](#/pattern-matching)
+- `isDefinedAt`, `orElse`, `andThen`, `lift`, `applyOrElse`, atd.
 
 Note:
 Ukázat příklad definice funkce, kde parametry nejsou odvoditelné typovou inferencí:
@@ -449,36 +448,36 @@ val function = x => x.toString
 
 
 ## Importing
-- Klasickou syntaxí lze importovat třídy/objekty
+- Třídy/objekty
   - Wildcard je podtržítko
-  - Statické importy se neznačí explicitně
+  - Statické importy rozeznány automaticky
     ```scala
     import scala.collection.JavaConverters._
     ```
-- Lze importovat více vybraných tříd/objektů najednou
+- Více tříd/objektů najednou
   ```scala
   import scala.io.{Codec, Source}
   ```
-- Lze importovat z vnořených objektů jako by to byly packages
+- Objekt jako package
 
 
 
 ## Importing
-- Importy se mohou řetězit
+- Řetězení
   ```scala
   import scala.collection
   import collection.Map
   ```
-- Libovolnou třídu/objekt lze přejmenovat
+- Přejmenování
   ```scala
   import java.util.{List => JavaList}
   ```
-- Lze vynechat třídy/objekty z wildcard importu
+- Vynechání
   ```scala
   import java.util.{Map => _, _}
   ```
-- Importy lze definovat i lokálně v libovolném bloku
-  - Typicky použito například při importu memberů z companion objektu
+- Lze lokálně v bloku
+  - Např. membery z companion objektu
 
 
 
@@ -489,9 +488,9 @@ x match {
     ...
 }
 ```
-- Vše za `=>` interpretováno jako blok až do dalšího casu nebo konce bloku
-- Kompilátor kontroluje, zda je seznam casů vyčerpávající
-- Porovnání konkrétní hodnoty
+- Za `=>` je blok
+- Kompilátor kontroluje vyčerpávající seznam
+- Konkrétní hodnota
   ```scala
   case "value" =>
   ```
@@ -503,15 +502,15 @@ x match {
 
 
 ## Pattern matching
-- Porovnání s hodnotou uloženou v lokální proměnné
+- Porovnání s proměnnou definovanou v kontextu
   ```scala
   case `variable` =>
   ```
-- Porovnání typu
+- Typ
   ```scala
   case str: String =>
   ```
-- Podpora podmínek
+- Podmínka
   ```scala
   case person if person.name.startsWith("Jan") =>
   ```
@@ -519,19 +518,19 @@ x match {
 
 
 ## Pattern matching
-- Extrakce proměnných přes unapply/unapplySeq
+- Extraktory (přes `unapply`/`unapplySeq`)
   ```scala
   case Person(name, email) =>
   ```
-- Extrakci lze vnořovat
+- Vnořování
   ```scala
   case Person(name, Address(city, street)) =>
   ```
-- Lze extrahovat pouze vybrané proměnné
+- Selektivní extrakce
   ```scala
   case Person(_, Address(city, _)) =>
   ```
-- Binding celé hodnoty
+- Binding
   ```scala
   case person@Person(name, _) =>
   ```
@@ -539,7 +538,7 @@ x match {
 
 
 ## Pattern matching
-- Používá se při odchytávání výjimek
+- Výjimky
   ```scala
   val input = try System.console.readLine() catch {
     case _: IOError =>
@@ -547,7 +546,7 @@ x match {
       "Default"
   } finally println("Konec vstupu")
   ```
-- Samotný blok casů funguje jako zkrácený zápis pro PartialFunction
+- Parciální funkce
   ```scala
   val partFunc: PartialFunction[Any, Unit] = {
     case s: String => println(s)
@@ -557,23 +556,23 @@ x match {
 
 
 ## Úvod do kolekcí
-- Scala obsahuje velmi silný framework pro práci s kolekcemi pomocí funkcí vyššího řádu
-- Transformace celých kolekcí místo práce s jednotlivými prvky
-- Připomíná moderní Java Streams API, ale mnohem obsáhlejší (a prověřenější)
-- Důraz na výkon i na maximální čitelnost kódu
-- Důraz na obecnost – metody jsou definovány co nejvýše v hierarchii tříd
-  - `String` i `Array` jsou součástí hierarchie (lze na nich volat stejné operace jako na sekvencích)
+- Velmi silný framework pomocí funkcí vyššího řádu
+- Transformace kolekcí místo prvků
+- Připomíná Java Streams API, ale obsáhlejší (a prověřenější)
+- Výkon a čitelnost
+- Obecnost – metody co nejvýše v hierarchii
+  - `String` i `Array` v hierarchii (stejné operace)
 
 
 
 ## Úvod do kolekcí
-- Člení kolekce na immutable a mutable, kde immutable jsou silně preferované
-- Stále existují obecné nadtřídy/traits – lze se spolehnout na to, že kód, který je používá, přijímá immutable i mutable kolekce a neprovádí v nich žádné změny
-- Doporučuje se importovat jen balík `scala.collection.mutable` a přistupovat přes něj:
+- Immutable a mutable (immutable preferované)
+- Obecné nadtřídy/traits – kód přijímá immutable i mutable a neprovádí změny
+- Import balíku `scala.collection.mutable` pro explicitnost
   ```scala
   val set = new mutable.HashSet[Int, String]
   ```
-- Nejužívanější kolekce mají alias ve `scala._` a není tedy potřeba je importovat
+- Nejužívanější mají alias ve `scala._` - není potřeba import
 
 Note:
 Prověřenější = od roku 2010 (Java Stream od 2014)
@@ -582,7 +581,7 @@ Prověřenější = od roku 2010 (Java Stream od 2014)
 
 #### [Immutable kolekce](http://docs.scala-lang.org/overviews/collections/overview.html)
 
-![Immutable kolekce](img/collections.immutable.png) <!-- .element: style="border: none; background: none; box-shadow: none; max-width: 80%" -->
+![immutable kolekce](img/collections.immutable.png) <!-- .element: style="border: none; background: none; box-shadow: none; max-width: 80%" -->
 
 Note:
 Option není kolekce, ale lze k němu tak přistupovat
@@ -591,12 +590,12 @@ Option není kolekce, ale lze k němu tak přistupovat
 
 #### [Mutable kolekce](http://docs.scala-lang.org/overviews/collections/overview.html)
 
-![Mutable kolekce](img/collections.mutable.png) <!-- .element: style="border: none; background: none; box-shadow: none; max-width: 95%" -->
+![mutable kolekce](img/collections.mutable.png) <!-- .element: style="border: none; background: none; box-shadow: none; max-width: 95%" -->
 
 
 
 ## Konstrukce kolekcí
-- Všechny kolekce lze snadno sestavit pomocí metody `apply`
+- `apply`
   ```scala
   List("a", "b")
   Array("a", "b")
@@ -604,18 +603,18 @@ Option není kolekce, ale lze k němu tak přistupovat
   TreeMap("a" -> 1, "b" -> 2)
   mutable.HashSet("a", "b")
   ```
-- Prázdné kolekce lze získat pomocí metody `empty`
+- `empty`
   ```scala
   List.empty
   Set.empty
   Array.empty
   ```
-  - Typy jsou doplněny podle použití pomocí inference, ale lze je i explicitně uvést
+  - Typy inferovány, ale lze i explicitně
 
 
 
 ## Konstrukce kolekcí
-- Mnoho dalších užitečných konstrukčních metod na companion objektech
+- Další konstrukční metody na companion objektech
   ```scala
   // Celá čísla dělitelná třemi do sta
   Array.range(0, 100, 3)
@@ -635,96 +634,100 @@ Option není kolekce, ale lze k němu tak přistupovat
 ## Základní operace
 Operace                                    | Popis
 -------------------------------------------|----------------------------
-`xs(i)`                                    | Vrátí prvek na i-té pozici
-`xs.size`                                  | Počet prvků v kolekci
-`xs.isEmpty`, `xs.nonEmpty`                | Zda je/není kolekce prázdná
-`xs.indexOf(x)`                            | Index prvku x
-`xs.hasDefiniteSize`                       | Zda je kolekce velikostně omezená
-`xs.head`, `xs.last`                       | První/poslední prvek
+`xs(i)`                                    | Prvek na i-té pozici
+`xs.size`                                  | Počet prvků
+`xs.isEmpty`, `xs.nonEmpty`                | Prázdnost
+`xs.indexOf(x)`                            | Index prvku
+`xs.hasDefiniteSize`                       | Velikostní omezenost
+`xs.head`, `xs.last`                       | První/poslední
 
 
 Operace                                    | Popis
 -------------------------------------------|----------------------------
-`xs.headOption`, `xs.lastOption`           | První/poslední prvek jako `Option[T]`
-`xs.tail`, `xs.init`                       | Kolekce bez prvního/posledního prvku
-`xs.find(p)`                               | Najde první prvek podle daného predikátu
-`xs.forall(p)`                             | Zda pro všechny prvky platí daný predikát
-`xs.exists(p)`                             | Zda existuje prvek splňující predikát
+`xs.headOption`, `xs.lastOption`           | První/poslední v `Option[T]`
+`xs.tail`, `xs.init`                       | Bez prvního/posledního
+`xs.find(p)`                               | První prvek podle predikátu
+`xs.forall(p)`                             | Predikát pro všechny
+`xs.exists(p)`                             | Existence podle predikátu
 
 
 Operace                                    | Popis
 -------------------------------------------|----------------------------
-`xs.sum`, `xs.product`                     | Sečte/vynásobí numerické prvky v kolekci
-`xs.min`, `xs.max`                         | Minimální/maximální řaditelný prvek
-`xs.mkString(start,sep,end)`               | Vytvoří `String` všech prvků s daným prefixem, suffixem a separátorem
-`xs.toArray`, `xs.toList`, `xs.toSeq`, ... | Zkonvertuje kolekci na kolekci daného typu
+`xs.sum`, `xs.product`                     | Sečte/vynásobí prvky
+`xs.min`, `xs.max`                         | Minimum/maximum
+`xs.mkString(start,sep,end)`               | `String` z prvků s prefixem, suffixem a separátorem
+`xs.toArray`, `xs.toList`, `xs.toSeq`, ... | Konverze kolekce
 
 
 Operace                                    | Popis
 -------------------------------------------|----------------------------
-`xs.toMap`                                 | Vytvoří mapu z kolekce dvojic (`Tuple2`)
-`xs.sameElements(ys)`                      | Zda kolekce obsahují stejné prvky
-`xs.foreach(f)`                            | Provede danou funkci na každém prvku kolekce
-`xs.transform(f)`                          | Transformuje každý prvek mutable kolekce danou funkcí
-`ms.transform(f)`                          | Transformuje všechny hodnoty v mapě funkcí f
+`xs.toMap`                                 | Mapa z kolekce dvojic (`Tuple2`)
+`xs.sameElements(ys)`                      | Test na stejné prvky
+`xs.foreach(f)`                            | Aplikace funkce na prvky
+`xs.transform(f)`                          | Transformace mutable kolekce funkcí
+`ms.transform(f)`                          | Transformace hodnot v mutable mapě funkcí
 
 
 
 ## Transformační operace
 Operace    | Popis
 -----------|------------------------------------
-`xs ++ ys` | Konkatenuje dvě kolekce
-`xs -- ys` | Odstraní prvky podle druhé kolekce
-`xs + x`   | Kolekce s přidaným/odebraným prvkem
-`xs - y`   | Kolekce s přidaným/odebraným prvkem
+`xs ++ ys` | Konkatenace
+`xs -- ys` | Odstranění prvků
+`xs + x`   | Přidání prvku
+`xs - y`   | Odebrání prvku
 `xs & ys`  | Průnik množin
 `xs ⎮ ys`  | Sjednocení množin
 
 
 Operace                | Popis
 -----------------------|------------------------------------------------
-`xs.take(n)`           | Prvních n prvků kolekce
-`xs.drop(n)`           | Kolekce bez prvních n prvků
-`xs.takeWhile(p)`      | Nejdelší prefix kolekce, pro nějž všechny prvky splňují predikát
-`xs.dropWhile(p)`      | Odstraní nejdelší prefix kolekce podle predikátu
-`xs.patch(i,ys,r)`     | Kolekce vzniklá nahrazením r prvků od i-tého kolekcí ys
+`xs.take(n)`           | Prvních n prvků
+`xs.drop(n)`           | Bez prvních n prvků
+`xs.takeWhile(p)`      | Nejdelší prefix podle predikátu
+`xs.dropWhile(p)`      | Bez nejdelšího prefixu podle predikátu
+`xs.patch(i,ys,r)`     | Nahrazení podsekvence
 
 
 Operace                | Popis
 -----------------------|------------------------------------------------
-`xs.filter(p)`         | Kolekce pouze těch prvků, které splňují daný predikát
-`xs.map(f)`            | Transformuje každý prvek kolekce danou funkcí
-`xs.flatMap(f)`        | Transformuje každý prvek na kolekci danou funkcí a konkatenuje výsledek
-`xs.collect(f)`        | Aplikuje danou parciální funkci na každý prvek a shromáždí výsledky
+`xs.filter(p)`         | Filtrování podle predikátu
+`xs.map(f)`            | Transformace funkcí
+`xs.flatMap(f)`        | Transformace funkcí a rozvinutí
+`xs.collect(f)`        | Shromáždění prvků podle parciální funkce
 
 
 Operace                | Popis
 -----------------------|------------------------------------------------
-`xs.zip(ys)`           | Kolekce párů prvků z daných kolekcí se stejným indexem
-`xs.zipAll(ys,x,y)`    | Jako zip, ale kratší kolekce je doplněna o prvky x/y
-`xs.zipWithIndex`      | Kolekce párů prvku a jeho indexu
+`xs.zip(ys)`           | Sloučení na kolekci párů podle indexu
+`xs.zipAll(ys,x,y)`    | Jako `zip` s doplněním kratší
+`xs.zipWithIndex`      | `zip` s indexy
 
 
 Operace                | Popis
 -----------------------|------------------------------------------------
-`xs.partition(p)`      | Rozdělí kolekci na dvě podle daného predikátu
-`xs.groupBy(f)`        | Rozdělí kolekci do mapy kolekcí podle daného diskriminátoru
-`xs.sortBy(f)`         | Kolekce prvků seřazených podle daného diskriminátoru
+`xs.partition(p)`      | Rozdělení podle predikátu
+`xs.groupBy(f)`        | Rozdělení podle diskriminátoru (do mapy)
+`xs.sortBy(f)`         | Řazení podle diskriminátoru
 
 
 
 ## Další operace
 Operace                                 | Popis
 ----------------------------------------|------------------------------
-`(z /: xs)(op)`, `xs.foldLeft(z)(op)`   | Aplikuje danou binární operaci postupně na mezivýsledek a každý prvek kolekce postupně zleva doprava, kde z je iniciální hodnota
-`(xs :\ z)(op)`, `xs.foldRight(z)(op)`  | Jako `foldLeft`, ale zprava
+`(z /: xs)(op)`, `xs.foldLeft(z)(op)`   | Kolekce do hodnoty z iniciální pomocí operace
+`(xs :\ z)(op)`, `xs.foldRight(z)(op)`  | Jako `foldLeft` zprava
 
 
 Operace                                   | Popis
 ------------------------------------------|------------------------------
-`xs.reduceLeft(op)`, `xs.reduceRight(op)` | Jako `foldLeft`, ale bez iniciálního prvku (iniciální hodnota je první prvek neprázdné kolekce a postupuje se od druhého prvku)
-`xs.grouped(size)`                        | Rozdělí kolekci na stejně velké úseky a vrátí je v iterátoru
-`xs.sliding(size, step)`                  | Iterátor s pevným sliding window s daným krokem k prvkům kolekce
+`xs.reduceLeft(op)`, `xs.reduceRight(op)` | Redukce zleva doprava pomocí operace
+`xs.grouped(size)`                        | Rozdělení na úseky
+`xs.sliding(size, step)`                  | Sliding window s daným krokem
+
+Note:
+reduceLeft potřebuje neprázdnou kolekci
+grouped a sliding vrací iterátor
 
 
 
@@ -771,13 +774,13 @@ BitSet          | C      | aC  | C      | eC
 
 
 ## Views
-- Transformační operace na kolekcích vytváří vždy novou kolekci (strict transformation)
-- Na kolekcích lze vytvořit “pohled”, který aplikuje transformace až při přístupu k prvkům (lazy transformation)
+- Transformační operace vytváří novou kolekci (strict transformation)
+- “Pohled” aplikující transformace při přístupu k prvku (lazy transformation)
   ```scala
   val view = coll.view.map(_ + 1)
   view(1) // aplikuje map jen na jeden prvek
   ```
-  - View lze materializovat zpět do kolekce
+  - Materializace
     ```scala
     val coll = view.force // aplikuje na všechny prvky
     ```
@@ -785,21 +788,21 @@ BitSet          | C      | aC  | C      | eC
 
 
 ## Views
-- Jsou implementovány jen pro obecné kolekce
-  - Ztrácejí informace o původní kolekci (`force` může vrátit jinou kolekci)
-- Lze použít pro update mutable kolekcí
+- Implementovány jen pro obecné kolekce
+  - Ztrácejí informaci o kolekci (`force` může vrátit jinou)
+- Selektivní update mutable kolekce
   ```scala
   val arr = (0 to 9).toArray
   arr.view.slice(3, 7).transform(-_)
   ```
-- Používání views může mást u operací se side-effecty a nevyplatí se pro příliš malé kolekce
-  - Doporučují se jen buď v čistě funkcionálním kódu, kde neexistují side-effecty, nebo pro mutaci kolekcí
+- Mohou mást u operací se side-effecty a nevyplatí se pro malé kolekce
+  - Doporučují se v čistě funkcionálním kódu bez side-effectů nebo pro mutaci kolekcí
 
 
 
 ## Stream
-- Speciální kolekce, která má jen lazy transformace
-- Pro sestavení a pattern matching lze použít operátor `#::`
+- Speciální kolekce s lazy transformacemi a pamatováním hodnot
+- Operátor `#::`
   ```scala
   def toZero(n: Int): Stream[Int] =
     n match {
@@ -808,7 +811,7 @@ BitSet          | C      | aC  | C      | eC
       case n if n < 0 => n #:: toZero(n + 1)
     }
   ```
-- Může být nekonečná
+- Nekonečnost
   ```scala
   def fib(a: BigDecimal, b: BigDecimal): Stream[BigDecimal] =
     a #:: fib(b, a + b)
@@ -817,7 +820,7 @@ BitSet          | C      | aC  | C      | eC
 
 
 ## For-comprehensions
-- Syntactic sugar pro specifické použití `map`, `flatMap` a `filter` operací
+- Syntactic sugar pro specifické použití `map`, `flatMap` a `filter`
   ```scala
   val x = (1 to 10).flatMap { i =>
     (1 to 10).filter(j => i != j).map { j =>
@@ -825,7 +828,7 @@ BitSet          | C      | aC  | C      | eC
     }
   }
   ```
-- Kosmeticky podobné `for`/`foreach` cyklům, funkčně je plně nahrazují a rozšiřují
+- Silnější než `for`/`foreach`
   ```scala
   val x = for {
     i <- 1 to 10
@@ -836,23 +839,23 @@ BitSet          | C      | aC  | C      | eC
 
 
 ## For-comprehensions
-- Při vynechání klíčového slova `yield` se místo `map` použije `foreach` a návratový typ bude `Unit`
+- Bez `yield` se volá `foreach` a nevrací hodnotu
   ```scala
   for { i <- 1 to 10 } println(i)
   ```
-- Lze iterovat přes libovolnou kolekci
+- Libovolné kolekce
   ```scala
   val cities = (for {
     person <- people if person.registered
     address <- person.addresses
   } yield address.city).distinct
   ```
-- Typům, které jsou navrženy pro práci s for-comprehensions, říkáme monadické (implementují `map`, `flatMap`)
+- Typy kompatibilní s for-comprehensions = monadické (`map`, `flatMap`)
 
 
 
 ## Implicitní třídy
-- Rozšíření stávajících tříd/traitů o nové metody
+- Rozšířování o nové metody
   ```scala
   implicit class EnhancedString(str: String) {
     def prefix(prefix: String) = prefix + str
@@ -860,10 +863,10 @@ BitSet          | C      | aC  | C      | eC
   
   println("World".prefix("Hello "))
   ```
-- Musí být definovány v jiném traitu, třídě nebo objektu
-    - Pro jejich externí použití se musí naimportovat
-- Musí mít pouze jeden parametr, který definuje, kterou třídu/trait rozšiřují
-- Ve stejném kontextu nesmí existovat nic (metoda, member, objekt) se stejným názvem
+- Definovány v jiném traitu, třídě nebo objektu
+    - Import pro externí použití
+- Jeden parametr - rozšiřovaná třída/trait
+- Název musí být unikátní v kontextu
 
 Note:
 Extensions (extends AnyVal) = nevytváří nový objekt (optimalizace)
@@ -886,17 +889,17 @@ Extensions (extends AnyVal) = nevytváří nový objekt (optimalizace)
 
 
 ## Scala historie
-- 1995 – vydána Java 1.0
-- 1996 – Martin Odersky a Phil Wadler vydali Pizza – generika, funkce vyšších řádů a pattern matching na Javě
-- 1998-9 – Generic Java (kompilátor použit jako stardardní pro Java 1.3 v roce 2000, generika integrována do Javy 5 v roce 2004)
-- 2000-2 – Funnel – programování s funkcionálními sítěmi, teoretický základ v join kalkulu - nepraktické
-- 2004 – vydána Scala 1.0 (něco mezi GJ a Funnelem) pro Javu and .NET
+- 1995 – Java 1.0
+- 1996 – Martin Odersky a Phil Wadler - jazyk Pizza – generika, funkce vyšších řádů a pattern matching na Javě
+- 1998-9 – Generic Java (kompilátor stardardem pro Java 1.3 v r. 2000, generika v Javě 5 v r. 2004)
+- 2000-2 – Funnel – funkcionální sítě, join kalkulus - nepraktické
+- 2004 – Scala 1.0 (něco mezi GJ a Funnelem) pro Javu a .NET
 - 2006 – Scala 2.0 – kompilátor ve Scale
-- 2009 – Twitter oznámil změnu z Ruby na Scalu
+- 2009 – Twitter - změna z Ruby na Scalu
 
 
 - 2010 – Scala 2.8 – Collections API
-- 2011 – 5-letý výzkumný grant a založení Typesafe (Lightbend v roce 2016)
+- 2011 – 5-letý výzkumný grant a založení Typesafe (Lightbend v r. 2016)
 - 2012 – .NET podpora zrušena
 - 2013 – Scala 2.10 – implicits, string interpolace, futures & promises, dynamické třídy, podpora JDK 1.6-1.7, actors, atd.
 - 2014 – lambdy a Stream API v Javě 8
@@ -923,16 +926,16 @@ Michal Šenkýř - Sklik vývojář
 
 
 ## Úloha – Vyhledávač duplicitních souborů
-- Potřebujeme vyhledat všechny duplicitní soubory v daných lokacích
-- Duplicitní soubory poznáme podle stejného hashe souborů (SHA-1)
-- Vyhledávání duplicit chceme optimalizovat tak, že nejdříve vyhledáme soubory se stejnou velikostí a teprve poté spočítáme hashe a porovnáváme
-- Výsledky vypíšeme tak, že na každém řádku bude jedna množina duplicitních souborů oddělená čárkami
+- Vyhledejte duplicitní soubory v daných lokacích
+- Duplicitní = stejný hash (SHA-1)
+- Optimalizace - nejdříve porovnáme velikost
+- Výsledky - na každém řádku jedna množina duplicit
 
 
 
 ## Úloha 2 – N-ticové pexeso
-- Chceme vytvořit hru podobnou Pexesu, s tím rozdílem, že nehledáme jen dvojice, ale n-tice
-- Na počátku máme zadánu šířku a výšku hracího pole a délku hledaných n-tic
-- Vytvoříme náhodné hrací pole a v každém tahu získáváme od hráče koordináty, přičemž mu zobrazujeme zakryté hrací pole s odkrytými v daném tahu vybranými prvky
-- Jakmile hráč vybere poslední prvek n-tice, vyhodnotíme výběr a pokud byly vybrány stejné prvky, odstraníme je
-- Takto pokračujeme, dokud není pole prázdné. Jakmile je prázdné, hru ukončíme a vypíšeme počet uskutečněných tahů
+- Pexeso, ale místo dvojic jsou n-tice
+- Nastavení - šířka a výška hracího pole, délka hledaných n-tic
+- Tah - hráč zadává n koordinátů a při každém zadání ukážeme hrací pole s odkrytými prvky
+- Mezi tahy vyhodnotíme a odstraníme (stejné) nebo zakryjeme (odlišné) prvky
+- Vítězství - pole je prázdné - zobrazíme počet tahů
