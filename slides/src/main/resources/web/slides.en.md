@@ -28,6 +28,7 @@ trait is a Scala equivalent of an interface
 
 ## Scala vs Java
 Java
+
 ```java
 public class Person implements Serializable {
     private final String firstName;
@@ -69,6 +70,7 @@ public class Person implements Serializable {
 ```
 
 Scala
+
 ```scala
 case class Person(firstName: String, lastName: String)
 ```
@@ -76,6 +78,7 @@ case class Person(firstName: String, lastName: String)
 
 ## Scala vs Java
 Java
+
 ```java
 List<String> keywords = Arrays.asList("Apple", "Ananas", "Mango", "Banana", "Beer");
 Map<Character, List<String>> result = new HashMap<>();
@@ -91,7 +94,9 @@ for (List<String> list : result.values()) {
 }
 System.out.println(result);
 ```
+
 Scala
+
 ```scala
 val keywords = List("Apple", "Ananas", "Mango", "Banana", "Beer")
 val result = keywords.sorted.groupBy(_.head)
@@ -163,15 +168,19 @@ Type Tags – Scala can automatically pass classes in type parameters if defined
 
 ## Preparation
 - Project creation
+
   ```bash
   mkdir -p projekt/src/main/scala && cd projekt
   ```
+
 - build.sbt
+
   ```scala
   name := "Project"
   
   scalaVersion := "2.12.0"
   ```
+
 - Commands
   - `sbt console` - REPL
   - `sbt compile` – compilation
@@ -182,11 +191,13 @@ Note:
 JRE >= 1.6
 
 SBT:
+
 ```bash
 curl -L -o sbt https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt && chmod +x sbt
 ```
 
 Ammonite REPL:
+
 ```bash
 curl -L -o amm https://git.io/vP4Gw && chmod +x amm
 ```
@@ -201,14 +212,17 @@ Other SBT directives:
 
 
 ## Immutable variables
+
 ```scala
 val x: Int = 5
 ```
+
 - Type inference
 - Same as `final` in Java
 - Concurrency
 - Code readability
 - Lazy evaluation
+
   ```scala
   lazy val x: Int = 5
   ```
@@ -219,9 +233,11 @@ Java JIT compiler can deduce from usage in code whether to optimize as final
 
 
 ## Mutable variables
+
 ```scala
 var x: Int = 5
 ```
+
 - For performance-sensitive code
 - More difficult to reason about value
 - Use only if "you know what you are doing"
@@ -229,14 +245,17 @@ var x: Int = 5
 
 
 ## Class definition
+
 ```scala
 class Test
 ```
+
 - Multiple classes in one file
   - File name is arbitrary
   - Clearer file structure
 - Modifiers
   - Same as in Java, but the default is public and package private can be specific
+
     ```scala
     private[sql]
     ```
@@ -247,9 +266,11 @@ Multiple classes – eg. Services and Exceptions
 
 
 ## Built-in singletons
+
 ```scala
 object Test
 ```
+
 - Same as a Java class with only static members
   - Scala classes do not have static members – moved into so-called companion objects (`object` with the same name)
 - Package hierarchy emulation
@@ -257,6 +278,7 @@ object Test
 
 
 ## Primary constructor
+
 ```scala
 class Test(param: Int,
            val get: Int,
@@ -265,6 +287,7 @@ class Test(param: Int,
   ...
 }
 ```
+
 - In class body, parameters in class signature
 - Automatic generation of getters/setters for parameters, if defined as `val`/`var`
 - Default values
@@ -274,9 +297,11 @@ class Test(param: Int,
 
 
 ## Auxiliary constructors
+
 ```scala
 def this(param: String) = this(param.toInt)
 ```
+
 - `this` methods without return type
 - Begin with calling another constructor
   - Chain ends in primary constructor call
@@ -284,18 +309,23 @@ def this(param: String) = this(param.toInt)
 
 
 ## Methods
+
 ```scala
 def transform(param1: Int, param2: Int = 2): Int = param1 * param2
 ```
+
 - Return type can be omitted - type inference
 - Default values for parameters
   - Call parameter choice by name instead of order
+
     ```scala
     transform(param1 = 1)
     ```
+
 - Parentheses can be omitted for parameterless
   - Parentheses mark side-effects
 - Passing parameter by name (lazy evaluation)
+
   ```scala
   def tranform(param: => Int): Int = ...
   ```
@@ -308,16 +338,21 @@ Mention differences in calling parameterless methods without/with parentheses (c
 
 ## Methods
 - Variable argument lists
+
   ```scala
   def transform(params: Int*): Int = ...
   ```
+
   - Acts as type `Seq[T]`
   - Unroll `Seq[T]` into varargs explicitly
+
     ```scala
     transform(paramsSeq: _*)
     ```
+
 - Methods and functions are not the same thing
   - Converting method into function
+
     ```scala
     val function = method _
     ```
@@ -325,6 +360,7 @@ Mention differences in calling parameterless methods without/with parentheses (c
 
 ## Symbolic methods (operators)
 - Calling infix/postfix style
+
   ```scala
   class Test(val x: Int) {
     def +(other: Test) = new Test(x + other.x)
@@ -333,15 +369,18 @@ Mention differences in calling parameterless methods without/with parentheses (c
   new Test(1) + new Test(2) // == new Test(3)
   new Test(1) !             // == new Test(-1)
   ```
+
   - Method ending in colon - infix reversed
   - Infix operators (+, -, *, /, etc.) have standard precedence
 
 
 
 ## Type parameters
+
 ```scala
 List[String]
 ```
+
 - Internally Java generics (erasure)
 - Compiler knows about them and enforces them
   - Omitting/casting is strongly discouraged
@@ -376,9 +415,11 @@ Postfix reports warning if language.postfixOps is not imported (can cause confus
   - Extractor in pattern matching (inverse of `apply`)
     - Multiple parameters - `T` is `TupleN`
   - Usage by assignment
+
     ```scala
     val Person(name, email) = person
     ```
+
 - `unapplySeq`
   - Returns `Option[Seq[T]]`
   - `unapply` for variable number of values
@@ -403,13 +444,17 @@ Show nested unapply (with tuples)
 
 
 ## Tuples
+
 ```scala
 val tuple: (Int, Int) = (1, 2)
 ```
+
 - Alternative:
+
   ```scala
   val tuple: (Int, Int) = 1 -> 2
   ```
+
 - Types `Tuple1[T1]`, `Tuple2[T1, T2]`, ...
 - Type-safe tuple of N elements (`TupleN`)
 - `apply`, `unapply`, `_N`, `hashCode`, `equals`, `swap`, etc.
@@ -417,26 +462,32 @@ val tuple: (Int, Int) = (1, 2)
 
 
 ## Functions
+
 ```scala
 val function: Int => String = (x: Int) => x.toString
 ```
+
 - Types `Function0[+R]`, `Function1[-T1, +R]`, ...
 - Parameters can be type-inferred
+
   ```scala
   val function: Int => String = x => x.toString
   ```
+
 - Function with N parameters (`FunctionN`)
 - `apply`, `curried`, `tupled`
 
 
 
 ## Partial functions
+
 ```scala
 val f = new PartialFunction[Int, Double] {
   override def apply(x: Int) = 1 / x
   override def isDefinedAt(x: Int) = x != 0
 }
 ```
+
 - Type `PartialFunction[-A, +B]`
 - Function with one parameter and limited domain
 - Easier definition by using [pattern matching](#/pattern-matching)
@@ -452,49 +503,64 @@ val function = x => x.toString
 - Classes/objects
   - Wildcard is underscore
   - Static imports discerned automatically
+
     ```scala
     import scala.collection.JavaConverters._
     ```
+
 - Multiple classes/objects
+
   ```scala
   import scala.io.{Codec, Source}
   ```
+
 - Object as package
 
 
 ## Importing
 - Chaining
+
   ```scala
   import scala.collection
   import collection.Map
   ```
+
 - Renaming
+
   ```scala
   import java.util.{List => JavaList}
   ```
+
 - Removal
+
   ```scala
   import java.util.{Map => _, _}
   ```
+
 - Can import locally in a block
   - e.g., members of companion object
 
 
 
 ## Pattern matching <!-- .slide: id="pattern-matching" -->
+
 ```scala
 x match {
   case ... =>
     ...
 }
 ```
+
 - Code block after `=>`
 - Compiler check exhaustiveness
 - Specific value
+
   ```scala
   case "value" =>
   ```
+
 - Default case
+
   ```scala
   case _ =>
   ```
@@ -502,14 +568,19 @@ x match {
 
 ## Pattern matching
 - Comparison with value contained in scope variable
+
   ```scala
   case `variable` =>
   ```
+
 - Type
+
   ```scala
   case str: String =>
   ```
+
 - Condition
+
   ```scala
   case person if person.name.startsWith("John") =>
   ```
@@ -517,18 +588,25 @@ x match {
 
 ## Pattern matching
 - Extractors (using `unapply`/`unapplySeq`)
+
   ```scala
   case Person(name, email) =>
   ```
+
 - Nesting
+
   ```scala
   case Person(name, Address(city, street)) =>
   ```
+
 - Selective extraction
+
   ```scala
   case Person(_, Address(city, _)) =>
   ```
+
 - Binding
+
   ```scala
   case person@Person(name, _) =>
   ```
@@ -536,6 +614,7 @@ x match {
 
 ## Pattern matching
 - Exceptions
+
   ```scala
   val input = try System.console.readLine() catch {
     case _: IOError =>
@@ -543,7 +622,9 @@ x match {
       "Default"
   } finally println("End of input")
   ```
+
 - Partial functions
+
   ```scala
   val partFunc: PartialFunction[Any, Unit] = {
     case s: String => println(s)
@@ -568,9 +649,11 @@ Mature = since 2010 (Java Stream since 2014)
 - Immutable and mutable (immutable preferred)
 - General superclasses/traits – code accepts both immutable and mutable and does not modify
 - Import package `scala.collection.mutable` for explicitness
+
   ```scala
   val set = new mutable.HashSet[Int, String]
   ```
+
 - Most used have an alias in `scala._` - import not needed
 
 
@@ -592,6 +675,7 @@ Option is not a collection but can be used as one
 
 ## Collections construction
 - `apply`
+
   ```scala
   List("a", "b")
   Array("a", "b")
@@ -599,17 +683,21 @@ Option is not a collection but can be used as one
   TreeMap("a" -> 1, "b" -> 2)
   mutable.HashSet("a", "b")
   ```
+
 - `empty`
+
   ```scala
   List.empty
   Set.empty
   Array.empty
   ```
+
   - Types inferred, but can be stated explicitly
 
 
 ## Collections construction
 - Other construction methods on companion objects
+
   ```scala
   // Integers divisible by three up to one hundred
   Array.range(0, 100, 3)
@@ -620,6 +708,7 @@ Option is not a collection but can be used as one
   // Areas of circles with radius of 1 to 10
   Array.tabulate(10)(Math.PI * Math.pow(_, 2))
   ```
+
 - Uniform equation
   - Differentiates between sets, maps and sequences
   - Doesn't differentiate between mutable/immutable
@@ -771,11 +860,14 @@ BitSet          | C      | aC  | C      | eC
 ## Views
 - Transformation operations create new collection (strict transformation)
 - “View” applies transformations on element access (lazy transformation)
+
   ```scala
   val view = coll.view.map(_ + 1)
   view(1) // applies map on only one element
   ```
+
   - Materialization
+
     ```scala
     val coll = view.force // applies on all elements
     ```
@@ -785,10 +877,12 @@ BitSet          | C      | aC  | C      | eC
 - Implemented only on general collections
   - Collection type information lost (`force` can return a different collection)
 - Selective update of mutable collection
+
   ```scala
   val arr = (0 to 9).toArray
   arr.view.slice(3, 7).transform(-_)
   ```
+
 - Can be confusing with operations with side-effects and not benefitial for small collections 
   - Usage recommended only in purely functional code without side-effects or for selective collection mutation
 
@@ -797,6 +891,7 @@ BitSet          | C      | aC  | C      | eC
 ## Stream
 - Special collection with lazy transformations and value memoization
 - `#::` operator
+
   ```scala
   def toZero(n: Int): Stream[Int] =
     n match {
@@ -805,7 +900,9 @@ BitSet          | C      | aC  | C      | eC
       case n if n < 0 => n #:: toZero(n + 1)
     }
   ```
+
 - Infinite stream
+
   ```scala
   def fib(a: BigDecimal, b: BigDecimal): Stream[BigDecimal] =
     a #:: fib(b, a + b)
@@ -815,6 +912,7 @@ BitSet          | C      | aC  | C      | eC
 
 ## For-comprehensions
 - Syntactic sugar for specific usage of `map`, `flatMap` a `filter`
+
   ```scala
   val x = (1 to 10).flatMap { i =>
     (1 to 10).filter(j => i != j).map { j =>
@@ -822,7 +920,9 @@ BitSet          | C      | aC  | C      | eC
     }
   }
   ```
+
 - Stronger than `for`/`foreach`
+
   ```scala
   val x = for {
     i <- 1 to 10
@@ -833,22 +933,27 @@ BitSet          | C      | aC  | C      | eC
 
 ## For-comprehensions
 - Without `yield` calls `foreach` and doesn't return value
+
   ```scala
   for { i <- 1 to 10 } println(i)
   ```
+
 - Works on all collections
+
   ```scala
   val cities = (for {
     person <- people if person.registered
     address <- person.addresses
   } yield address.city).distinct
   ```
+
 - Types compatible with for-comprehensions = monadic (`map`, `flatMap`)
 
 
 
 ## Implicit classes
 - Extending existing classes with new methods
+
   ```scala
   implicit class EnhancedString(str: String) {
     def prefix(prefix: String) = prefix + str
@@ -856,6 +961,7 @@ BitSet          | C      | aC  | C      | eC
   
   println("World".prefix("Hello "))
   ```
+
 - Defined in a different trait, class or object
     - Import for external usage
 - One parameter - class/trait being extended

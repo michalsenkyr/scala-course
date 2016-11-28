@@ -4,6 +4,7 @@ Scala course materials
 ## Preparation
 1. Make sure you have Java Runtime Environment 1.8 or newer installed (https://www.java.com/en/download/)
 2. Download SBT (sbt-extras is recommended)
+
     ```bash
     curl -L -o sbt https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt && chmod +x sbt
     sudo ln -s $(pwd)/sbt /usr/local/bin/sbt
