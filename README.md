@@ -19,6 +19,12 @@ Scala course materials
     git clone 'https://github.com/michalsenkyr/scala-course.git'
     ```
 
+## Viewing the slides
+* Slides are available in [Markdown](tree/master/slides/slides.en.md)([CZ](tree/master/slides/slides.cs.md))
+* A [Spray](http://spray.io/)/[Reveal.js](http://lab.hakim.se/reveal-js/) subproject is provided for presentation
+    * Serving the presentation on port 8000: `sbt slides/run`
+    * Serving the presentation on a different port: `sbt "slides/run 8080"`
+
 ## Executing examples using SBT
 1. Run the `sbt` command in the scala-course directory
 2. Switch to the appropriate subproject (eg. `project variables`)
@@ -30,6 +36,7 @@ Scala course materials
 Run the `amm` command in any directory
 
 ## Subprojects
+* slides - Contains slides and a Spray/Reveal.js project to present them
 * variables - Contains examples of defining and using variables (slide 10)
 * classes - Contains examples of defining classes/objects and their members (slides 11-18)
 * patternMatching - Contains examples of pattern matching (slides 20-21)

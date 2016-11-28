@@ -11,7 +11,7 @@ Michal Šenkýř - Sklik vývojář
 - Úspěšně používána v produkci
   - Twitter, Netflix, Tumblr, LinkedIn, Foursquare, ...
 
-Note:
+Poznámka:
 trait je Scala ekvivalent interface
 
 
@@ -74,7 +74,6 @@ case class Person(firstName: String, lastName: String)
 ```
 
 
-
 ## Scala vs Java
 Java
 ```java
@@ -99,7 +98,7 @@ val result = keywords.sorted.groupBy(_.head)
 println(result)
 ```
 
-Note:
+Poznámka:
 Mapa seznamů slov podle prvních písmen s lexikografickým řazením
 
 
@@ -114,7 +113,6 @@ Mapa seznamů slov podle prvních písmen s lexikografickým řazením
 - Silný důraz na používání immutable tříd
 
 
-
 ## Scala vs Java
 - Vyšší informační hustota
   - Odstranění zbytečné syntaxe, inference typů, string interpolace, ...
@@ -124,7 +122,7 @@ Mapa seznamů slov podle prvních písmen s lexikografickým řazením
   - Převod runtime chyb na compile-time
   - Silná závislost na typových parametrech, nahrazení null hodnot třídou Option, používání immutable tříd
 
-Note:
+Poznámka:
 Plná podpora closures = lze měnit vnější proměnné
 
 
@@ -141,7 +139,7 @@ Plná podpora closures = lze měnit vnější proměnné
 - Maximální type safety
   - Minimalizace přetypovávání (TypeTags proti erasure)
 
-Note:
+Poznámka:
 Nedrží za ručičku = poskytuje velké množství různých cest, jak dosáhnout daného cíle
 
 Type Tags – Scala umí automaticky resolvit třídy v typových parametrech, pokud je to na patřičných místech aktivováno
@@ -180,7 +178,7 @@ Type Tags – Scala umí automaticky resolvit třídy v typových parametrech, p
   - `sbt run` – kompilace a spuštění
   - `sbt ~run` – průběžná kompilace a spouštění
 
-Note:
+Poznámka:
 JRE >= 1.6
 
 SBT:
@@ -215,7 +213,7 @@ val x: Int = 5
   lazy val x: Int = 5
   ```
 
-Note:
+Poznámka:
 Java JIT kompilátor umí odvodit podle použití v kódu, zda lze optimalizovat jako final
 
 
@@ -243,6 +241,9 @@ class Test
     private[sql]
     ```
 
+Poznámka:
+Více tříd – např. Service a Exception
+
 
 
 ## Vestavěné singletony
@@ -252,9 +253,6 @@ object Test
 - Jako Java třída se static membery
   - Scala třídy nemají static membery – přesun do tzv. companion objektů (`object` se stejným názvem)
 - Simulace package hierarchie
-
-Note:
-Více tříd – např. Service a Exception
 
 
 
@@ -302,11 +300,10 @@ def transform(param1: Int, param2: Int = 2): Int = param1 * param2
   def tranform(param: => Int): Int = ...
   ```
 
-Note:
+Poznámka:
 Metody bez parametrů se tváří jako fieldy
 Závorky u side-effectů se používají, aby se metoda nepletla s fieldem
 Zmínit rozdíly ve volání metod bez parametrů bez/s závorkami (závorky lze vynechat, ale ne přidat)
-
 
 
 ## Metody
@@ -324,7 +321,6 @@ Zmínit rozdíly ve volání metod bez parametrů bez/s závorkami (závorky lze
     ```scala
     val function = method _
     ```
-
 
 
 ## Symbolické metody (operátory)
@@ -351,7 +347,7 @@ List[String]
   - Vynechávání/přetypovávání se silně nedoporučuje
 - TypeTags pro předání za runtime
 
-Note:
+Poznámka:
 Postfix hlásí warning, pokud se nenaimportuje language.postfixOps
 
 
@@ -366,14 +362,12 @@ Postfix hlásí warning, pokud se nenaimportuje language.postfixOps
   - Jako `apply`, ale s přiřazením
 
 
-
 ## Speciální metody
 - `..._=`
   - Jako settery - přiřazení do fieldu
   - Getter musí existovat
 - `unary_+`, `unary_-`, `unary_!`, `unary_~`
   - Unární operace
-
 
 
 ## Speciální metody
@@ -390,7 +384,7 @@ Postfix hlásí warning, pokud se nenaimportuje language.postfixOps
   - `unapply` pro proměnlivý počet hodnot
   - Např. regex pattern matching
 
-Note:
+Poznámka:
 Ukázat vnořený unapply (s tuples)
 
 
@@ -448,7 +442,7 @@ val f = new PartialFunction[Int, Double] {
 - Snadnější definice [pattern matchingem](#/pattern-matching)
 - `isDefinedAt`, `orElse`, `andThen`, `lift`, `applyOrElse`, atd.
 
-Note:
+Poznámka:
 Ukázat příklad definice funkce, kde parametry nejsou odvoditelné typovou inferencí:
 val function = x => x.toString
 
@@ -466,7 +460,6 @@ val function = x => x.toString
   import scala.io.{Codec, Source}
   ```
 - Objekt jako package
-
 
 
 ## Importing
@@ -507,7 +500,6 @@ x match {
   ```
 
 
-
 ## Pattern matching
 - Porovnání s proměnnou definovanou v kontextu
   ```scala
@@ -521,7 +513,6 @@ x match {
   ```scala
   case person if person.name.startsWith("Jan") =>
   ```
-
 
 
 ## Pattern matching
@@ -541,7 +532,6 @@ x match {
   ```scala
   case person@Person(name, _) =>
   ```
-
 
 
 ## Pattern matching
@@ -570,6 +560,8 @@ x match {
 - Obecnost – metody co nejvýše v hierarchii
   - `String` i `Array` v hierarchii (stejné operace)
 
+Poznámka:
+Prověřenější = od roku 2010 (Java Stream od 2014)
 
 
 ## Úvod do kolekcí
@@ -581,16 +573,13 @@ x match {
   ```
 - Nejužívanější mají alias ve `scala._` - není potřeba import
 
-Note:
-Prověřenější = od roku 2010 (Java Stream od 2014)
-
 
 
 #### [Immutable kolekce](http://docs.scala-lang.org/overviews/collections/overview.html)
 
 ![immutable kolekce](img/collections.immutable.png) <!-- .element: style="border: none; background: none; box-shadow: none; max-width: 80%" -->
 
-Note:
+Poznámka:
 Option není kolekce, ale lze k němu tak přistupovat
 
 
@@ -617,7 +606,6 @@ Option není kolekce, ale lze k němu tak přistupovat
   Array.empty
   ```
   - Typy inferovány, ale lze i explicitně
-
 
 
 ## Konstrukce kolekcí
@@ -732,7 +720,7 @@ Operace                                   | Popis
 `xs.grouped(size)`                        | Rozdělení na úseky
 `xs.sliding(size, step)`                  | Sliding window s daným krokem
 
-Note:
+Poznámka:
 reduceLeft potřebuje neprázdnou kolekci
 grouped a sliding vrací iterátor
 
@@ -793,7 +781,6 @@ BitSet          | C      | aC  | C      | eC
     ```
 
 
-
 ## Views
 - Implementovány jen pro obecné kolekce
   - Ztrácejí informaci o kolekci (`force` může vrátit jinou)
@@ -844,7 +831,6 @@ BitSet          | C      | aC  | C      | eC
   ```
 
 
-
 ## For-comprehensions
 - Bez `yield` se volá `foreach` a nevrací hodnotu
   ```scala
@@ -875,7 +861,7 @@ BitSet          | C      | aC  | C      | eC
 - Jeden parametr - rozšiřovaná třída/trait
 - Název musí být unikátní v kontextu
 
-Note:
+Poznámka:
 Extensions (extends AnyVal) = nevytváří nový objekt (optimalizace)
 
 
