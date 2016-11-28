@@ -8,13 +8,17 @@ Scala course materials
     curl -L -o sbt https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt && chmod +x sbt
     sudo ln -s $(pwd)/sbt /usr/local/bin/sbt
     ```
+
 3. (Optional) Download Ammonite REPL
+
     ```bash
     curl -L -o amm https://git.io/vP4Gw && chmod +x amm
     sudo ln -s $(pwd)/amm /usr/local/bin/amm
     ```
+
 4. (Optional) Install IntelliJ IDEA Community Edition (https://www.jetbrains.com/idea/download)
 5. Clone this repository
+
     ```bash
     git clone 'https://github.com/michalsenkyr/scala-course.git'
     ```
