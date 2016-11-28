@@ -28,6 +28,7 @@ trait je Scala ekvivalent interface
 
 ## Scala vs Java
 Java
+
 ```java
 public class Person implements Serializable {
     private final String firstName;
@@ -69,6 +70,7 @@ public class Person implements Serializable {
 ```
 
 Scala
+
 ```scala
 case class Person(firstName: String, lastName: String)
 ```
@@ -76,6 +78,7 @@ case class Person(firstName: String, lastName: String)
 
 ## Scala vs Java
 Java
+
 ```java
 List<String> keywords = Arrays.asList("Apple", "Ananas", "Mango", "Banana", "Beer");
 Map<Character, List<String>> result = new HashMap<>();
@@ -91,7 +94,9 @@ for (List<String> list : result.values()) {
 }
 System.out.println(result);
 ```
+
 Scala
+
 ```scala
 val keywords = List("Apple", "Ananas", "Mango", "Banana", "Beer")
 val result = keywords.sorted.groupBy(_.head)
@@ -163,15 +168,19 @@ Type Tags – Scala umí automaticky resolvit třídy v typových parametrech, p
 
 ## Příprava
 - Vytvoření projektu
+
   ```bash
   mkdir -p projekt/src/main/scala && cd projekt
   ```
+
 - build.sbt
+
   ```scala
   name := "Projekt"
   
   scalaVersion := "2.12.0"
   ```
+
 - Příkazy
   - `sbt console` - REPL
   - `sbt compile` – kompilace
@@ -182,11 +191,13 @@ Poznámka:
 JRE >= 1.6
 
 SBT:
+
 ```bash
 curl -L -o sbt https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt && chmod +x sbt
 ```
 
 Ammonite REPL:
+
 ```bash
 curl -L -o amm https://git.io/vP4Gw && chmod +x amm
 ```
@@ -201,14 +212,17 @@ Další SBT direktivy:
 
 
 ## Immutable proměnné
+
 ```scala
 val x: Int = 5
 ```
+
 - Typová inference
 - Jako `final` v Javě
 - Paralelizace
 - Čitelnost kódu
 - Lazy evaluation
+
   ```scala
   lazy val x: Int = 5
   ```
@@ -219,9 +233,11 @@ Java JIT kompilátor umí odvodit podle použití v kódu, zda lze optimalizovat
 
 
 ## Mutable proměnné
+
 ```scala
 var x: Int = 5
 ```
+
 - Pro výkonostně kritický kód
 - Obtížnější úvaha o obsažené hodnotě
 - Použití pouze když “víte, co děláte”
@@ -229,14 +245,17 @@ var x: Int = 5
 
 
 ## Definice tříd
+
 ```scala
 class Test
 ```
+
 - Více tříd v jednom souboru
   - Název souboru libovolný
   - Přehlednější souborová struktura
 - Modifikátory
   - Jako v Javě, ale default je public a konkrétní package private
+
     ```scala
     private[sql]
     ```
@@ -247,9 +266,11 @@ Více tříd – např. Service a Exception
 
 
 ## Vestavěné singletony
+
 ```scala
 object Test
 ```
+
 - Jako Java třída se static membery
   - Scala třídy nemají static membery – přesun do tzv. companion objektů (`object` se stejným názvem)
 - Simulace package hierarchie
@@ -257,6 +278,7 @@ object Test
 
 
 ## Primární konstruktor
+
 ```scala
 class Test(param: Int,
            val get: Int,
@@ -265,6 +287,7 @@ class Test(param: Int,
   ...
 }
 ```
+
 - V těle třídy, parametry v signatuře třídy
 - Parametrům se vytvoří gettery/settery, pokud jsou `val`/`var`
 - Default hodnoty
@@ -274,9 +297,11 @@ class Test(param: Int,
 
 
 ## Doplňkové konstruktory
+
 ```scala
 def this(param: String) = this(param.toInt)
 ```
+
 - `this` metody bez návratového typu
 - Začínají voláním jiného konstruktoru
   - Řetěz končí voláním primárního konstruktoru
@@ -284,18 +309,23 @@ def this(param: String) = this(param.toInt)
 
 
 ## Metody
+
 ```scala
 def transform(param1: Int, param2: Int = 2): Int = param1 * param2
 ```
+
 - Vynechání návratového typu - typová inference
 - Default hodnoty parametrů
   - Parametry volání názvem místo pořadím
+
     ```scala
     transform(param1 = 1)
     ```
+
 - Bez parametrů lze vynechat závorky
   - Závorky značí side-effecty
 - Předávání parametru jménem (lazy vyhodnocování)
+
   ```scala
   def tranform(param: => Int): Int = ...
   ```
@@ -308,16 +338,21 @@ Zmínit rozdíly ve volání metod bez parametrů bez/s závorkami (závorky lze
 
 ## Metody
 - Varargs
+
   ```scala
   def transform(params: Int*): Int = ...
   ```
+
   - Uvnitř metody typ `Seq[T]`
   - Rozvinutí `Seq[T]` na varargs explicitně
+
     ```scala
     transform(paramsSeq: _*)
     ```
+
 - Metody a funkce nejsou totéž
   - Konverze metody na funkci
+
     ```scala
     val function = method _
     ```
@@ -325,6 +360,7 @@ Zmínit rozdíly ve volání metod bez parametrů bez/s závorkami (závorky lze
 
 ## Symbolické metody (operátory)
 - Volání v infix/postfix stylu
+
   ```scala
   class Test(val x: Int) {
     def +(other: Test) = new Test(x + other.x)
@@ -333,15 +369,18 @@ Zmínit rozdíly ve volání metod bez parametrů bez/s závorkami (závorky lze
   new Test(1) + new Test(2) // == new Test(3)
   new Test(1) !             // == new Test(-1)
   ```
+
   - Metoda končí dvojtečkou - infix obráceně
   - Infix operátory (+, -, *, /, atd.) mají typickou precedenci
 
 
 
 ## Typové parametry
+
 ```scala
 List[String]
 ```
+
 - Interně Java generika (erasure)
 - Kompilátor má přehled a vynucuje si dodržování
   - Vynechávání/přetypovávání se silně nedoporučuje
@@ -376,9 +415,11 @@ Postfix hlásí warning, pokud se nenaimportuje language.postfixOps
   - Extraktor v pattern matchingu (inverz k `apply`)
     - Více parametrů - `T` je `TupleN`
   - Použití při přiřazování
+
     ```scala
     val Person(name, email) = person
     ```
+
 - `unapplySeq`
   - Vrací `Option[Seq[T]]`
   - `unapply` pro proměnlivý počet hodnot
@@ -403,13 +444,17 @@ Ukázat vnořený unapply (s tuples)
 
 
 ## Tuples
+
 ```scala
 val tuple: (Int, Int) = (1, 2)
 ```
+
 - Alternativa:
+
   ```scala
   val tuple: (Int, Int) = 1 -> 2
   ```
+
 - Typy `Tuple1[T1]`, `Tuple2[T1, T2]`, ...
 - Typově bezpečné N-tice (`TupleN`)
 - `apply`, `unapply`, `_N`, `hashCode`, `equals`, `swap`, atd.
@@ -417,26 +462,32 @@ val tuple: (Int, Int) = (1, 2)
 
 
 ## Funkce
+
 ```scala
 val function: Int => String = (x: Int) => x.toString
 ```
+
 - Typy `Function0[+R]`, `Function1[-T1, +R]`, ...
 - Parametry lze nechat odvodit typovou inferencí
+
   ```scala
   val function: Int => String = x => x.toString
   ```
+
 - Funkce s N parametry (`FunctionN`)
 - `apply`, `curried`, `tupled`
 
 
 
 ## Parciální funkce
+
 ```scala
 val f = new PartialFunction[Int, Double] {
   override def apply(x: Int) = 1 / x
   override def isDefinedAt(x: Int) = x != 0
 }
 ```
+
 - Typ `PartialFunction[-A, +B]`
 - Funkce s jedním parametrem s omezeným definičním oborem
 - Snadnější definice [pattern matchingem](#/pattern-matching)
@@ -452,49 +503,64 @@ val function = x => x.toString
 - Třídy/objekty
   - Wildcard je podtržítko
   - Statické importy rozeznány automaticky
+
     ```scala
     import scala.collection.JavaConverters._
     ```
+
 - Více tříd/objektů najednou
+
   ```scala
   import scala.io.{Codec, Source}
   ```
+
 - Objekt jako package
 
 
 ## Importing
 - Řetězení
+
   ```scala
   import scala.collection
   import collection.Map
   ```
+
 - Přejmenování
+
   ```scala
   import java.util.{List => JavaList}
   ```
+
 - Vynechání
+
   ```scala
   import java.util.{Map => _, _}
   ```
+
 - Lze lokálně v bloku
   - Např. membery z companion objektu
 
 
 
 ## Pattern matching <!-- .slide: id="pattern-matching" -->
+
 ```scala
 x match {
   case ... =>
     ...
 }
 ```
+
 - Za `=>` je blok
 - Kompilátor kontroluje vyčerpávající seznam
 - Konkrétní hodnota
+
   ```scala
   case "value" =>
   ```
+
 - Default case
+
   ```scala
   case _ =>
   ```
@@ -502,14 +568,19 @@ x match {
 
 ## Pattern matching
 - Porovnání s proměnnou definovanou v kontextu
+
   ```scala
   case `variable` =>
   ```
+
 - Typ
+
   ```scala
   case str: String =>
   ```
+
 - Podmínka
+
   ```scala
   case person if person.name.startsWith("Jan") =>
   ```
@@ -517,18 +588,25 @@ x match {
 
 ## Pattern matching
 - Extraktory (přes `unapply`/`unapplySeq`)
+
   ```scala
   case Person(name, email) =>
   ```
+
 - Vnořování
+
   ```scala
   case Person(name, Address(city, street)) =>
   ```
+
 - Selektivní extrakce
+
   ```scala
   case Person(_, Address(city, _)) =>
   ```
+
 - Binding
+
   ```scala
   case person@Person(name, _) =>
   ```
@@ -536,6 +614,7 @@ x match {
 
 ## Pattern matching
 - Výjimky
+
   ```scala
   val input = try System.console.readLine() catch {
     case _: IOError =>
@@ -543,7 +622,9 @@ x match {
       "Default"
   } finally println("Konec vstupu")
   ```
+
 - Parciální funkce
+
   ```scala
   val partFunc: PartialFunction[Any, Unit] = {
     case s: String => println(s)
@@ -568,9 +649,11 @@ Prověřenější = od roku 2010 (Java Stream od 2014)
 - Immutable a mutable (immutable preferované)
 - Obecné nadtřídy/traits – kód přijímá immutable i mutable a neprovádí změny
 - Import balíku `scala.collection.mutable` pro explicitnost
+
   ```scala
   val set = new mutable.HashSet[Int, String]
   ```
+
 - Nejužívanější mají alias ve `scala._` - není potřeba import
 
 
@@ -592,6 +675,7 @@ Option není kolekce, ale lze k němu tak přistupovat
 
 ## Konstrukce kolekcí
 - `apply`
+
   ```scala
   List("a", "b")
   Array("a", "b")
@@ -599,17 +683,21 @@ Option není kolekce, ale lze k němu tak přistupovat
   TreeMap("a" -> 1, "b" -> 2)
   mutable.HashSet("a", "b")
   ```
+
 - `empty`
+
   ```scala
   List.empty
   Set.empty
   Array.empty
   ```
+
   - Typy inferovány, ale lze i explicitně
 
 
 ## Konstrukce kolekcí
 - Další konstrukční metody na companion objektech
+
   ```scala
   // Celá čísla dělitelná třemi do sta
   Array.range(0, 100, 3)
@@ -620,6 +708,7 @@ Option není kolekce, ale lze k němu tak přistupovat
   // Obsahy kruhů o poloměrech 1 až 10
   Array.tabulate(10)(Math.PI * Math.pow(_, 2))
   ```
+
 - Uniformní rovnost
   - Rozlišuje množiny, mapy a sekvence
   - Nerozlišuje mutable/immutable
@@ -771,11 +860,14 @@ BitSet          | C      | aC  | C      | eC
 ## Views
 - Transformační operace vytváří novou kolekci (strict transformation)
 - “Pohled” aplikující transformace při přístupu k prvku (lazy transformation)
+
   ```scala
   val view = coll.view.map(_ + 1)
   view(1) // aplikuje map jen na jeden prvek
   ```
+
   - Materializace
+
     ```scala
     val coll = view.force // aplikuje na všechny prvky
     ```
@@ -785,10 +877,12 @@ BitSet          | C      | aC  | C      | eC
 - Implementovány jen pro obecné kolekce
   - Ztrácejí informaci o kolekci (`force` může vrátit jinou)
 - Selektivní update mutable kolekce
+
   ```scala
   val arr = (0 to 9).toArray
   arr.view.slice(3, 7).transform(-_)
   ```
+
 - Mohou mást u operací se side-effecty a nevyplatí se pro malé kolekce
   - Doporučují se v čistě funkcionálním kódu bez side-effectů nebo pro mutaci kolekcí
 
@@ -797,6 +891,7 @@ BitSet          | C      | aC  | C      | eC
 ## Stream
 - Speciální kolekce s lazy transformacemi a pamatováním hodnot
 - Operátor `#::`
+
   ```scala
   def toZero(n: Int): Stream[Int] =
     n match {
@@ -805,7 +900,9 @@ BitSet          | C      | aC  | C      | eC
       case n if n < 0 => n #:: toZero(n + 1)
     }
   ```
+
 - Nekonečnost
+
   ```scala
   def fib(a: BigDecimal, b: BigDecimal): Stream[BigDecimal] =
     a #:: fib(b, a + b)
@@ -815,6 +912,7 @@ BitSet          | C      | aC  | C      | eC
 
 ## For-comprehensions
 - Syntactic sugar pro specifické použití `map`, `flatMap` a `filter`
+
   ```scala
   val x = (1 to 10).flatMap { i =>
     (1 to 10).filter(j => i != j).map { j =>
@@ -822,7 +920,9 @@ BitSet          | C      | aC  | C      | eC
     }
   }
   ```
+
 - Silnější než `for`/`foreach`
+
   ```scala
   val x = for {
     i <- 1 to 10
@@ -833,22 +933,27 @@ BitSet          | C      | aC  | C      | eC
 
 ## For-comprehensions
 - Bez `yield` se volá `foreach` a nevrací hodnotu
+
   ```scala
   for { i <- 1 to 10 } println(i)
   ```
+
 - Libovolné kolekce
+
   ```scala
   val cities = (for {
     person <- people if person.registered
     address <- person.addresses
   } yield address.city).distinct
   ```
+
 - Typy kompatibilní s for-comprehensions = monadické (`map`, `flatMap`)
 
 
 
 ## Implicitní třídy
 - Rozšířování o nové metody
+
   ```scala
   implicit class EnhancedString(str: String) {
     def prefix(prefix: String) = prefix + str
@@ -856,6 +961,7 @@ BitSet          | C      | aC  | C      | eC
   
   println("World".prefix("Hello "))
   ```
+
 - Definovány v jiném traitu, třídě nebo objektu
     - Import pro externí použití
 - Jeden parametr - rozšiřovaná třída/trait
