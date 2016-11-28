@@ -490,7 +490,7 @@ val f = new PartialFunction[Int, Double] {
 
 - Typ `PartialFunction[-A, +B]`
 - Funkce s jedním parametrem s omezeným definičním oborem
-- Snadnější definice [pattern matchingem](#/pattern-matching)
+- Snadnější definice [pattern matchingem](#pattern-matching)
 - `isDefinedAt`, `orElse`, `andThen`, `lift`, `applyOrElse`, atd.
 
 Poznámka:

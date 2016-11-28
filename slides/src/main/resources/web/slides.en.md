@@ -490,7 +490,7 @@ val f = new PartialFunction[Int, Double] {
 
 - Type `PartialFunction[-A, +B]`
 - Function with one parameter and limited domain
-- Easier definition by using [pattern matching](#/pattern-matching)
+- Easier definition by using [pattern matching](#pattern-matching)
 - `isDefinedAt`, `orElse`, `andThen`, `lift`, `applyOrElse`, etc.
 
 Note:
