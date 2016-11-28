@@ -1,5 +1,5 @@
-# scala-course
-Scala course materials
+![Scala course](scala-course.png)
+# Course: Scala for beginners
 
 ## Preparation
 1. Make sure you have Java Runtime Environment 1.8 or newer installed (https://www.java.com/en/download/)
