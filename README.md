@@ -20,7 +20,7 @@ Scala course materials
     ```
 
 ## Viewing the slides
-* Slides are available in [Markdown](https://github.com/michalsenkyr/scala-course/tree/master/slides/slides.en.md) ([Czech version](https://github.com/michalsenkyr/scala-course/tree/master/slides/slides.cs.md))
+* Slides are available in [Markdown](slides/src/main/resources/web/slides.en.md) ([Czech version](slides/src/main/resources/web/slides.cs.md))
 * A [Spray](http://spray.io/)/[Reveal.js](http://lab.hakim.se/reveal-js/) subproject is provided for presentation
     * Serving the presentation on port 8000: `sbt slides/run`
     * Serving the presentation on a different port: `sbt "slides/run 8080"`
