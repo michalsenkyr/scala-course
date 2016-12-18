@@ -64,15 +64,10 @@ lazy val tuplesGame = project.
 
 lazy val slides = project.
   settings(common: _*).
+  enablePlugins(SbtServePlugin).
   settings(
     name := "slides",
-    description := "Scala course slides",
-    libraryDependencies ++= Seq(
-      "com.typesafe.akka" %% "akka-actor" % "2.4.14",
-      "io.spray" %% "spray-routing" % "1.3.4",
-      "io.spray" %% "spray-can" % "1.3.4"
-    ),
-    mainClass in assembly := Some("com.github.michalsenkyr.courses.scala.slides.Server")
+    description := "Scala course slides"
   )
 
 lazy val root = (project in file(".")).
