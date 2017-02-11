@@ -1,6 +1,8 @@
 ## Scala pro začátečníky
 Michal Šenkýř - Sklik vývojář
 
+[github.com/michalsenkyr/scala-course](https://github.com/michalsenkyr/scala-course) <!-- .element: style="font-size: 60%;" -->
+
 
 
 ## Scala
