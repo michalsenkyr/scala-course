@@ -62,19 +62,6 @@ lazy val tuplesGame = project.
     description := "Tuples game exercise solution"
   )
 
-lazy val slides = project.
-  settings(common: _*).
-  settings(
-    name := "slides",
-    description := "Scala course slides",
-    libraryDependencies ++= Seq(
-      "com.typesafe.akka" %% "akka-actor" % "2.4.14",
-      "io.spray" %% "spray-routing" % "1.3.4",
-      "io.spray" %% "spray-can" % "1.3.4"
-    ),
-    mainClass in assembly := Some("com.github.michalsenkyr.courses.scala.slides.Server")
-  )
-
 lazy val root = (project in file(".")).
   settings(common: _*).
   settings(
@@ -82,4 +69,4 @@ lazy val root = (project in file(".")).
     description := "Scala course materials"
   ).
   aggregate(variables, classes, patternMatching, collections,
-    forComprehensions, implicits, duplicateFinder, tuplesGame, slides)
+    forComprehensions, implicits, duplicateFinder, tuplesGame)

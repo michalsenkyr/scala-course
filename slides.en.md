@@ -152,7 +152,7 @@ Type Tags – Scala can automatically pass classes in type parameters if defined
 
 
 ## Class hierarchy
-![class hierarchy](img/classhierarchy.png) <!-- .element: style="border: none; background: none; box-shadow: none" -->
+![class hierarchy](images/classhierarchy.png) <!-- .element: style="border: none; background: none; box-shadow: none" -->
 
 
 
@@ -660,7 +660,7 @@ Mature = since 2010 (Java Stream since 2014)
 
 #### [Immutable collections](http://docs.scala-lang.org/overviews/collections/overview.html)
 
-![immutable collections](img/collections.immutable.png) <!-- .element: style="border: none; background: none; box-shadow: none; max-width: 80%" -->
+![immutable collections](images/collections.immutable.png) <!-- .element: style="border: none; background: none; box-shadow: none; max-width: 80%" -->
 
 Note:
 Option is not a collection but can be used as one
@@ -669,7 +669,7 @@ Option is not a collection but can be used as one
 
 #### [Mutable collections](http://docs.scala-lang.org/overviews/collections/overview.html)
 
-![mutable collections](img/collections.mutable.png) <!-- .element: style="border: none; background: none; box-shadow: none; max-width: 95%" -->
+![mutable collections](images/collections.mutable.png) <!-- .element: style="border: none; background: none; box-shadow: none; max-width: 95%" -->
 
 
 

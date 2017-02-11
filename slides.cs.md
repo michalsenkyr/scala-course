@@ -152,7 +152,7 @@ Type Tags – Scala umí automaticky resolvit třídy v typových parametrech, p
 
 
 ## Hierarchie tříd
-![hierarchie tříd](img/classhierarchy.png) <!-- .element: style="border: none; background: none; box-shadow: none" -->
+![hierarchie tříd](images/classhierarchy.png) <!-- .element: style="border: none; background: none; box-shadow: none" -->
 
 
 
@@ -660,7 +660,7 @@ Prověřenější = od roku 2010 (Java Stream od 2014)
 
 #### [Immutable kolekce](http://docs.scala-lang.org/overviews/collections/overview.html)
 
-![immutable kolekce](img/collections.immutable.png) <!-- .element: style="border: none; background: none; box-shadow: none; max-width: 80%" -->
+![immutable kolekce](images/collections.immutable.png) <!-- .element: style="border: none; background: none; box-shadow: none; max-width: 80%" -->
 
 Poznámka:
 Option není kolekce, ale lze k němu tak přistupovat
@@ -669,7 +669,7 @@ Option není kolekce, ale lze k němu tak přistupovat
 
 #### [Mutable kolekce](http://docs.scala-lang.org/overviews/collections/overview.html)
 
-![mutable kolekce](img/collections.mutable.png) <!-- .element: style="border: none; background: none; box-shadow: none; max-width: 95%" -->
+![mutable kolekce](images/collections.mutable.png) <!-- .element: style="border: none; background: none; box-shadow: none; max-width: 95%" -->
 
 
 
