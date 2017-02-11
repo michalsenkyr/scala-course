@@ -1,4 +1,3 @@
-![Scala course](scala-course.png)
 # Course: Scala for beginners
 
 ## Preparation
